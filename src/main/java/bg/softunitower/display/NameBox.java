@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class NameBox extends JFrame {
 
+    //J frame class
     private final JFrame frame = new JFrame();
     public static String playerName = "NoName";
     private Window window;
