@@ -1,6 +1,6 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
-import objects.Player;
+import bg.softunitower.objects.Player;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

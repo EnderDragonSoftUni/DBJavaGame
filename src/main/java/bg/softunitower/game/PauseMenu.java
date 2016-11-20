@@ -1,6 +1,6 @@
-package game;
+package bg.softunitower.game;
 
-import graphicHandler.Assets;
+import bg.softunitower.graphicHandler.Assets;
 
 import java.awt.*;
 

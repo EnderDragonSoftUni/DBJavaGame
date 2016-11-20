@@ -1,4 +1,4 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
 public class AnimationHandler {
 }

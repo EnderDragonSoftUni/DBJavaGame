@@ -1,10 +1,10 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
-import game.Game;
-import objects.gift.CopperCoin;
-import objects.gift.Gift;
-import objects.gift.GoldCoin;
-import objects.gift.SilverCoin;
+import bg.softunitower.game.Game;
+import bg.softunitower.objects.gift.CopperCoin;
+import bg.softunitower.objects.gift.Gift;
+import bg.softunitower.objects.gift.GoldCoin;
+import bg.softunitower.objects.gift.SilverCoin;
 
 import java.awt.*;
 import java.util.ArrayList;

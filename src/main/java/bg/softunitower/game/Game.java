@@ -1,20 +1,21 @@
-package game;
+package bg.softunitower.game;
 
 import bg.softunitower.display.NameBox;
-import display.Window;
-import graphicHandler.*;
-import objects.HighScore;
-import objects.Player;
-import objects.ProgressBar;
-import objects.gift.Gift;
+import bg.softunitower.display.Window;
+import bg.softunitower.graphicHandler.*;
+import bg.softunitower.objects.HighScore;
+import bg.softunitower.objects.Player;
+import bg.softunitower.objects.ProgressBar;
+import bg.softunitower.objects.gift.Gift;
 
 import java.awt.*;
+import java.awt.Menu;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int SCALE = 2;
+    public static final int SCALE = 2;a
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";

@@ -1,6 +1,6 @@
 package bg.softunitower.display;
 
-import game.Game;
+import bg.softunitower.game.Game;
 import javax.swing.*;
 import java.awt.*;
 
