@@ -1,7 +1,7 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
-import game.Game;
-import objects.Button;
+import bg.softunitower.game.Game;
+import bg.softunitower.objects.Button;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;

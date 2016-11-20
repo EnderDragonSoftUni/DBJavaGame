@@ -1,4 +1,4 @@
-package game;
+package bg.softunitower.game;
 
 import java.io.IOException;
 

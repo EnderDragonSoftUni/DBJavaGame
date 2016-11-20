@@ -1,4 +1,4 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

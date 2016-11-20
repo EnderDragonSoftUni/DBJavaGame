@@ -1,7 +1,7 @@
-package game;
+package bg.softunitower.game;
 
-import display.NameBox;
-import graphicHandler.Assets;
+import bg.softunitower.display.NameBox;
+import bg.softunitower.graphicHandler.Assets;
 
 import java.awt.*;
 import java.io.*;

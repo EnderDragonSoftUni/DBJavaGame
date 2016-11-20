@@ -1,8 +1,8 @@
-package game;
+package bg.softunitower.game;
 
-import graphicHandler.Assets;
-import graphicHandler.PlatformHandler;
-import objects.Player;
+import bg.softunitower.graphicHandler.Assets;
+import bg.softunitower.graphicHandler.PlatformHandler;
+import bg.softunitower.objects.Player;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

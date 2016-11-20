@@ -1,7 +1,7 @@
-package graphicHandler;
+package bg.softunitower.graphicHandler;
 
-import game.Game;
-import objects.Platform;
+import bg.softunitower.game.Game;
+import bg.softunitower.objects.Platform;
 
 import java.awt.*;
 import java.util.ArrayList;
