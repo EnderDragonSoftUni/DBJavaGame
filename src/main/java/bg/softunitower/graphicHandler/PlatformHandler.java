@@ -7,9 +7,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by Niki on 7.6.2016 г..
- */
 public class PlatformHandler {
 
     public static ArrayList<Platform> objects = new ArrayList<>();

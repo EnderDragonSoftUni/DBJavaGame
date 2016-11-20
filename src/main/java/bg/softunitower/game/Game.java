@@ -9,13 +9,12 @@ import bg.softunitower.objects.ProgressBar;
 import bg.softunitower.objects.gift.Gift;
 
 import java.awt.*;
-import java.awt.Menu;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int SCALE = 2;a
+    public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";

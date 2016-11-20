@@ -8,10 +8,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
-/**
- * Created by Niki on 5.6.2016 г..
- */
 public class Menu extends MouseAdapter {
 
     private Game game;
