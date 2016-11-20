@@ -155,7 +155,7 @@ public class Assets {
 
         player = new SpriteSheet(ImageLoader.loadImage("/sprite.png"));
         wizard = new SpriteSheet(ImageLoader.loadImage("/wizard.png"));
-        nakov = new SpriteSheet(ImageLoader.loadImage("/Nakov.png"));
+        nakov = new SpriteSheet(ImageLoader.loadImage("/nakov.png"));
         zombie = new SpriteSheet(ImageLoader.loadImage("/spriteZombie.png"));
 
         goldCoin = new SpriteSheet(ImageLoader.loadImage("/coin_gold.png"));
