@@ -1,9 +1,9 @@
-package objects;
+package bg.softunitower.objects;
 
-import game.Game;
-import graphicHandler.Assets;
-import graphicHandler.InputHandler;
-import graphicHandler.PlatformHandler;
+import bg.softunitower.game.Game;
+import bg.softunitower.graphicHandler.Assets;
+import bg.softunitower.graphicHandler.InputHandler;
+import bg.softunitower.graphicHandler.PlatformHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

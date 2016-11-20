@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objects.gift;
+package bg.softunitower.objects.gift;
 
-import game.Game;
-import graphicHandler.Assets;
-import graphicHandler.GiftHandler;
-import graphicHandler.InputHandler;
-import graphicHandler.SpriteSheet;
+import bg.softunitower.game.Game;
+import bg.softunitower.graphicHandler.Assets;
+import bg.softunitower.graphicHandler.GiftHandler;
+import bg.softunitower.graphicHandler.InputHandler;
+import bg.softunitower.graphicHandler.SpriteSheet;
 
 import java.awt.*;
 

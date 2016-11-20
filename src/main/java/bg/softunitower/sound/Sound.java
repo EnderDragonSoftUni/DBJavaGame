@@ -1,8 +1,5 @@
-package sound;
+package bg.softunitower.sound;
 
-/**
- * Created by oxana_bs on 7.6.2016 г..
- */
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;

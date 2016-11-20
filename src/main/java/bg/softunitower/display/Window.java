@@ -1,4 +1,4 @@
-package display;
+package bg.softunitower.display;
 
 import game.Game;
 import javax.swing.*;

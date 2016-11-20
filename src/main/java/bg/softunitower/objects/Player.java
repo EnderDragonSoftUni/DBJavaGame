@@ -1,8 +1,6 @@
-package objects;
+package bg.softunitower.objects;
 
-import objects.gift.Gift;
-import game.Game;
-import graphicHandler.*;
+import bg.softunitower.game.Game;
 
 import java.awt.*;
 import java.util.Random;

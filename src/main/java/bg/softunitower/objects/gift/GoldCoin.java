@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objects.gift;
+package bg.softunitower.objects.gift;
 
-import graphicHandler.Assets;
+import bg.softunitower.graphicHandler.Assets;
 
 /**
  *

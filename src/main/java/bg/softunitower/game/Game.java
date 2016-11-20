@@ -12,9 +12,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
-/**
- * Created by Niki on 5.6.2016 г..
- */
 public class Game extends Canvas implements Runnable {
 
     public static final int SCALE = 2;

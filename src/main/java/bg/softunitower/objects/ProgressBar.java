@@ -1,7 +1,7 @@
-package objects;
+package bg.softunitower.objects;
 
-import game.Game;
-import graphicHandler.LevelHandler;
+import bg.softunitower.game.Game;
+import bg.softunitower.graphicHandler.LevelHandler;
 
 import java.awt.*;
 

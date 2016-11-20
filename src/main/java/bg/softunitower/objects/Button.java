@@ -1,4 +1,4 @@
-package objects;
+package bg.softunitower.objects;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

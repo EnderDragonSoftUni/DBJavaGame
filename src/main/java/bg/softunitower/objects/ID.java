@@ -1,4 +1,4 @@
-package objects;
+package bg.softunitower.objects;
 
 public enum  ID {
     Player,

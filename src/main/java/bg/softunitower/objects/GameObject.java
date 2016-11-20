@@ -1,10 +1,7 @@
-package objects;
+package bg.softunitower.objects;
 
 import java.awt.*;
 
-/**
- * Created by Niki on 10.6.2016 г..
- */
 public abstract class GameObject {
     protected float x, y;
     protected ID id;

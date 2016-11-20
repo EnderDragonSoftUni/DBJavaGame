@@ -1,6 +1,6 @@
-package objects;
+package bg.softunitower.objects;
 
-import graphicHandler.LevelHandler;
+import bg.softunitower.graphicHandler.LevelHandler;
 
 import java.awt.*;
 
