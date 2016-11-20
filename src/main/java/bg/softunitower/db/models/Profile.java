@@ -1,11 +1,12 @@
 package bg.softunitower.db.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "profiles")
-public class Profile {
+public class Profile implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,7 +17,7 @@ public class Profile {
     @Column(unique = true)
     private String username;
     @OneToOne
-    @JoinColumn(name = "unlock_id")
+    @JoinColumn(name = "unlocks_id")
     private Unlocks unlocks;
     @Basic
     private Integer money;
