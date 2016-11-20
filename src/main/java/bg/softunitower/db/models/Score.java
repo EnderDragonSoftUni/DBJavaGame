@@ -3,10 +3,11 @@ package bg.softunitower.db.models;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "scores")
-public class Score {
+public class Score implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
