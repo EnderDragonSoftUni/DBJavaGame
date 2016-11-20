@@ -42,11 +42,13 @@ public class LevelHandler {
         if (levelPassed) {
             levelPassed = false;
             if (currentLevel == 1) {
+
                 Platform.setImg(Assets.iceberg);
             } else if (currentLevel == 2) {
 
                 Platform.setImg(Assets.tile2);
             } else if (currentLevel == 3){
+
                 Platform.setImg(Assets.iceberg);
             }
         }

@@ -1,5 +1,5 @@
 package bg.softunitower.game;
-
+import bg.softunitower.fortunebonuslevel.Fortune;
 import bg.softunitower.display.NameBox;
 import bg.softunitower.display.Window;
 import bg.softunitower.graphicHandler.*;
@@ -45,6 +45,8 @@ public class Game extends Canvas implements Runnable {
     private LevelHandler levelHandler;
     private InputHandler inputHandler;
     private PauseMenu pauseMenu;
+    //Bonus level called "Fortune"
+    private Fortune fortune;
 
     public int getScore() {
         return score;
@@ -75,6 +77,7 @@ public class Game extends Canvas implements Runnable {
     public static STATE gameState = STATE.Menu;
 
     public Game() throws IOException {
+
         Assets.init();
         this.platformHandler = new PlatformHandler();
         this.giftHandler = new GiftHandler();
@@ -82,6 +85,7 @@ public class Game extends Canvas implements Runnable {
         this.progressBar = new ProgressBar(this);
         this.levelHandler = new LevelHandler(this.platformHandler, this.giftHandler);
         this.pauseMenu = new PauseMenu();
+        this.fortune = new Fortune();
 
         currentScore = new Score(score);
         PlatformHandler.addStartingPlatforms();
@@ -218,6 +222,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
+        this.fortune.start();
         currentScore = new Score(score);
         isPaused = false;
         Score.tick(currentScore);

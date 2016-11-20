@@ -18,7 +18,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Score {
 
-    private static final String HIGHSCORE_PATH = "src/statistics/highscores.data";
+    private static final String HIGHSCORE_PATH = "highscores.data";
 
     public static Map<String, Long> highscores = new HashMap<>();
     public static List<String> topList = new ArrayList<>();
