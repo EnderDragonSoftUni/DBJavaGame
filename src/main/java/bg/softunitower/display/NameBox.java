@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 
 public class NameBox extends JFrame {
 
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 200;
+    private static final int FONT_SIZE = 20;
+
     private final JFrame frame = new JFrame();
     public static String playerName = "NoName";
     private Window window;
@@ -22,10 +26,10 @@ public class NameBox extends JFrame {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.requestFocus();
-        frame.setSize(400, 200);
+        frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        Font fnt = new Font("Calibri", Font.BOLD, 20);
+        Font fnt = new Font("Calibri", Font.BOLD, FONT_SIZE);
         label.setFont(fnt);
 
         panel.add(label, 0);
