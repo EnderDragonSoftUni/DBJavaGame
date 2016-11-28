@@ -45,6 +45,8 @@ public class Game extends Canvas implements Runnable {
     private LevelHandler levelHandler;
     private InputHandler inputHandler;
     private PauseMenu pauseMenu;
+    private long timePlayed;
+
     //Bonus level called "Fortune"
     private Fortune fortune;
 
@@ -122,6 +124,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
+
         while (running) {
             long lastTime = System.nanoTime();
             double amountOfTicks = 20.0;
@@ -153,6 +156,9 @@ public class Game extends Canvas implements Runnable {
                     timer += 1000;
 //                    System.out.println("FPS " + frames);
                     frames = 0;
+                    if (gameState == STATE.Game){
+                        this.timePlayed++;
+                    }
                 }
             }
             stop();
@@ -197,6 +203,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         g.drawString(String.format("Coins: %s", coins), 10, 20);
+        g.drawString(String.format("Time: %d", this.timePlayed), 50, 20);
 
         if (gameState == STATE.Game) {
             player.render(g);
@@ -222,7 +229,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
-        this.fortune.start();
+       // this.fortune.start();
         currentScore = new Score(score);
         isPaused = false;
         Score.tick(currentScore);
@@ -239,6 +246,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void createPlayer() {
+        timePlayed = 0;
         player = new Player(WIDTH / 2 - 60, 345, 60, 70, platformHandler, giftHandler, progressBar);
     }
 
