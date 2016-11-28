@@ -6,9 +6,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
- * Created by Niki on 6.6.2016 г..
- */
 public class InputHandler implements KeyListener {
     public static boolean beginning = true;
     public static boolean jumped = false;

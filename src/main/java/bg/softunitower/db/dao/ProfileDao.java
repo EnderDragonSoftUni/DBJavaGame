@@ -2,12 +2,12 @@ package bg.softunitower.db.dao;
 
 import bg.softunitower.db.models.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by vilimir on 20.11.16.
- */
 @Repository
 public interface ProfileDao extends JpaRepository<Profile,String> {
-
+    @Query("SELECT COUNT(p) from Profile as p WHERE p.username = :username")
+    int countAllProfilesWithUsername(@Param(value = "username") String username);
 }

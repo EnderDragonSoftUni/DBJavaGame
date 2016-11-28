@@ -1,6 +1,6 @@
 package bg.softunitower.game;
 
-import bg.softunitower.display.NameBox;
+import bg.softunitower.display.RegistrationFrame;
 import bg.softunitower.graphicHandler.Assets;
 
 import java.awt.*;
@@ -44,7 +44,7 @@ public class Score {
     public void save() {
         long epoch = System.currentTimeMillis() / 1000;
         String line;
-        line = NameBox.playerName + " " + String.valueOf(score) + "\n";
+        line = RegistrationFrame.playerName + " " + String.valueOf(score) + "\n";
 
         byte data[] = line.getBytes();
         Path highScorePath = Paths.get(HIGHSCORE_PATH);

@@ -1,27 +1,30 @@
 package bg.softunitower.db.models;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "unlocks")
+@Transactional
 public class Unlocks implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "item_one_unlocked")
-    private Boolean isItemOneUnlocked;
+    private boolean isItemOneUnlocked;
     @Column(name = "item_two_unlocked")
-    private Boolean isItemTwoUnlocked;
+    private boolean isItemTwoUnlocked;
     @Column(name = "item_three_unlocked")
-    private Boolean isItemThreeUnlocked;
+    private boolean isItemThreeUnlocked;
     @Column(name = "item_one_selected")
-    private Boolean isItemOneSelected;
+    private boolean isItemOneSelected;
     @Column(name = "item_two_selected")
-    private Boolean IsItemTwoSelected;
+    private boolean IsItemTwoSelected;
     @Column(name = "item_three_selected")
-    private Boolean isItemThreeSelected;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "unlocks")
+    private boolean isItemThreeSelected;
+    @OneToOne(mappedBy = "unlocks")
     private Profile profile;
 
     public Unlocks() {
@@ -90,4 +93,5 @@ public class Unlocks implements Serializable {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
+
 }

@@ -1,12 +1,14 @@
 package bg.softunitower.db.models;
 
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "scores")
+@Transactional
 public class Score implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
