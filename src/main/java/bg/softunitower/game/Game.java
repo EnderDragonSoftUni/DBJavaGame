@@ -1,6 +1,6 @@
 package bg.softunitower.game;
 import bg.softunitower.fortunebonuslevel.Fortune;
-import bg.softunitower.display.NameBox;
+import bg.softunitower.display.RegistrationFrame;
 import bg.softunitower.display.Window;
 import bg.softunitower.graphicHandler.*;
 import bg.softunitower.objects.HighScore;
@@ -98,7 +98,6 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
         new Window(WIDTH, HEIGHT, TITLE, this);
-        new NameBox();
     }
 
     public synchronized void start() {
@@ -229,7 +228,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void resetGame() {
+<<<<<<< HEAD
        // this.fortune.start();
+=======
+//        this.fortune.start();
+>>>>>>> c965ee237fa4aeec890037c35e587ffff0ce6175
         currentScore = new Score(score);
         isPaused = false;
         Score.tick(currentScore);

@@ -1,11 +1,14 @@
 package bg.softunitower.db.models;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "profiles")
+@Transactional
 public class Profile implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +19,7 @@ public class Profile implements Serializable{
     private String password;
     @Column(unique = true)
     private String username;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "unlocks_id")
     private Unlocks unlocks;
     @Basic

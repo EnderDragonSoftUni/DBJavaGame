@@ -1,6 +1,8 @@
 package bg.softunitower.display;
 
 import bg.softunitower.game.Game;
+import org.springframework.stereotype.Component;
+
 import javax.swing.*;
 import java.awt.*;
 

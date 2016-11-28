@@ -58,7 +58,6 @@ public class Menu extends MouseAdapter {
             //Pause button
             if (mouseOver(mx, my, Assets.pauseButton.getX(), Assets.pauseButton.getY(),
                     32, 32)) {
-
                 Game.isPaused = true;
             }
         }
