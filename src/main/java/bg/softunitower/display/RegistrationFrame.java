@@ -1,6 +1,7 @@
 package bg.softunitower.display;
 
 import bg.softunitower.db.services.interfaces.ProfileService;
+import bg.softunitower.utils.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 @org.springframework.stereotype.Component
 public class RegistrationFrame extends JFrame {
@@ -96,11 +99,15 @@ public class RegistrationFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     validateRegistration(registerUsernameTextField.getText(), registerPasswordTextField.getText(), registerConfirmPassTextField.getText());
-                    profileService.createProfile(registerUsernameTextField.getText(), registerPasswordTextField.getText());
+                    profileService.createProfile(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
                     registerFrame.dispose();
                 }catch (IllegalArgumentException iae){
                     System.out.println("something went wrong :(");
                     resetFields(registerUsernameTextField, registerPasswordTextField, registerConfirmPassTextField);
+                } catch (NoSuchAlgorithmException e1) {
+                    e1.printStackTrace();
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
                 }
             }
         });
