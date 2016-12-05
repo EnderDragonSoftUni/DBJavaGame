@@ -1,5 +1,6 @@
 package bg.softunitower.display;
 
+import bg.softunitower.db.dtos.ProfileDto;
 import bg.softunitower.db.models.Profile;
 import bg.softunitower.db.services.interfaces.ProfileService;
 import bg.softunitower.game.Game;
@@ -121,6 +122,8 @@ public class RegistrationFrame extends JFrame {
                     registerUsernameTextField.setText("");
                     registerPasswordTextField.setText("");
                     registerConfirmPassTextField.setText("");
+                    ProfileDto profileDto = new ProfileDto(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
+                    profileService.createProfile(profileDto);
                     registerFrame.dispose();
                 } catch (IllegalArgumentException iae) {
                     System.out.println("something went wrong :(");
