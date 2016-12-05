@@ -16,6 +16,7 @@ target/
 *.ipr
 application.properties
 
+
 ### NetBeans ###
 nbproject/private/
 build/
@@ -23,3 +24,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/src/main/resources/application.properties
