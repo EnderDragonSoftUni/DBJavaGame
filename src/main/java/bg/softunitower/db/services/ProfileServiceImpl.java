@@ -43,4 +43,6 @@ public class ProfileServiceImpl implements ProfileService {
     public List<Profile> getAllProfiles() {
         return profileDao.findAll();
     }
+
+
 }

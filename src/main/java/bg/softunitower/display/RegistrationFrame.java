@@ -118,12 +118,13 @@ public class RegistrationFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     validateRegistration(registerUsernameTextField.getText(), registerPasswordTextField.getText(), registerConfirmPassTextField.getText());
-                    profileService.createProfile(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
+                    //profileService.createProfile(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
+
+                    ProfileDto profileDto = new ProfileDto(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
+                    profileService.createProfile(profileDto);
                     registerUsernameTextField.setText("");
                     registerPasswordTextField.setText("");
                     registerConfirmPassTextField.setText("");
-                    ProfileDto profileDto = new ProfileDto(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
-                    profileService.createProfile(profileDto);
                     registerFrame.dispose();
                 } catch (IllegalArgumentException iae) {
                     System.out.println("something went wrong :(");

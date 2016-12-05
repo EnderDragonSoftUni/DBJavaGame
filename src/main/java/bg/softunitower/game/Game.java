@@ -233,7 +233,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         g.drawString(String.format("Coins: %s", coins), 10, 20);
-        g.drawString(String.format("Time: %d", this.timePlayed), 50, 20);
+        g.drawString(String.format("Time: %d", this.timePlayed), 80, 20);
 
         if (gameState == STATE.Game) {
             player.render(g);

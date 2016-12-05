@@ -12,5 +12,4 @@ public interface ProfileService {
 
     List<Profile> getAllProfiles();
 
-    void createProfile(String text, String s);
 }
