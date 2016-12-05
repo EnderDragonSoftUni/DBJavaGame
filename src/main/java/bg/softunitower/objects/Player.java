@@ -62,6 +62,7 @@ public class Player {
 
         if (getBounds().intersects(new Rectangle(0, 475, 700, 60))) {
             isDead = true;
+
         }
 
         if (x < this.cropWidth * -1) {

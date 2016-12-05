@@ -12,5 +12,6 @@ public class SoftUniTowerApplication {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(SoftUniTowerApplication.class);
 		builder.headless(false);
 		ConfigurableApplicationContext context = builder.run(args);
+
 	}
 }

@@ -12,11 +12,11 @@ import java.io.Serializable;
 public class Score implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Basic
-    private Long points;
+    private long points;
     @Column(name = "play_time")
-    private Integer playtime;
+    private long playtime;
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
@@ -24,27 +24,35 @@ public class Score implements Serializable{
     public Score() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Long getPoints() {
+    public long getPoints() {
         return points;
     }
 
-    public void setPoints(Long points) {
+    public void setPoints(long points) {
         this.points = points;
     }
 
-    public Integer getPlaytime() {
+    public long getPlaytime() {
         return playtime;
     }
 
-    public void setPlaytime(Integer playtime) {
+    public void setPlaytime(long playtime) {
         this.playtime = playtime;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

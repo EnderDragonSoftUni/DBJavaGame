@@ -14,8 +14,6 @@ public class Profile implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic
-    private String name;
-    @Basic
     private String password;
     @Column(unique = true)
     private String username;
@@ -52,14 +50,6 @@ public class Profile implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Unlocks getUnlocks() {

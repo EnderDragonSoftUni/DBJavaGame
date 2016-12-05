@@ -206,7 +206,7 @@ public class Menu extends MouseAdapter {
             }
 
         } else if (Game.gameState == Game.STATE.HighScore) {
-            Game.currentScore.render(g);
+            Game.highscore.render(g);
             Assets.shopBackButton.render(g);
         }
     }

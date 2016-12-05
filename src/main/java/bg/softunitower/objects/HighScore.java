@@ -10,21 +10,21 @@ public class HighScore {
     private String score;
     private Font font;
 
-    public HighScore(int score) {
-        this.score = Integer.toString(score);
+    public HighScore(long score) {
+        this.score = Long.toString(score);
         this.font = new Font("Calibri", Font.BOLD, FONTSIZE);
 
     }
 
-    public void tick(int score) {
-        this.score = Integer.toString(score);
+    public void tick(long score) {
+        this.score = Long.toString(score);
 
     }
 
     public void render(Graphics g) {
         g.setFont(font);
         g.setColor(Color.green);
-        g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
+        g.drawString(String.format("Level: %d | Highscores: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
     }
 
 }

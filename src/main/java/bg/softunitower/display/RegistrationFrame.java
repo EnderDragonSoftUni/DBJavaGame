@@ -1,9 +1,12 @@
 package bg.softunitower.display;
 
+import bg.softunitower.db.models.Profile;
 import bg.softunitower.db.services.interfaces.ProfileService;
+import bg.softunitower.game.Game;
 import bg.softunitower.utils.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.*;
+import java.util.List;
 
-@org.springframework.stereotype.Component
+@Component
 public class RegistrationFrame extends JFrame {
 
     @Autowired
@@ -20,7 +25,6 @@ public class RegistrationFrame extends JFrame {
     private final JFrame loginFrame = new JFrame();
     private final JFrame registerFrame = new JFrame();
     public static String playerName = "NoName";
-    private Window window;
 
     public RegistrationFrame() {
 
@@ -76,9 +80,23 @@ public class RegistrationFrame extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String input = nameTextField.getText();
-                setPlayerName(input);
-                loginFrame.dispose();
+                String input = usernameTextField.getText();
+                String pass = passwordTextField.getText();
+                List<Profile> profiles = profileService.getAllProfiles();
+
+                for (Profile profile : profiles) {
+                    try {
+                        if (profile.getUsername().equals(input) && profile.getPassword().equals(PasswordHelper.md5get(pass))) {
+                            Game.setProfile(profile);
+                            loginFrame.dispose();
+                        }
+                    } catch (NoSuchAlgorithmException e1) {
+                        e1.printStackTrace();
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+
             }
         });
         registrationButton.addActionListener(new ActionListener() {
@@ -101,7 +119,7 @@ public class RegistrationFrame extends JFrame {
                     validateRegistration(registerUsernameTextField.getText(), registerPasswordTextField.getText(), registerConfirmPassTextField.getText());
                     profileService.createProfile(registerUsernameTextField.getText(), PasswordHelper.md5get(registerPasswordTextField.getText()));
                     registerFrame.dispose();
-                }catch (IllegalArgumentException iae){
+                } catch (IllegalArgumentException iae) {
                     System.out.println("something went wrong :(");
                     resetFields(registerUsernameTextField, registerPasswordTextField, registerConfirmPassTextField);
                 } catch (NoSuchAlgorithmException e1) {
@@ -120,10 +138,10 @@ public class RegistrationFrame extends JFrame {
     }
 
     private void validateRegistration(String username, String password, String confPassword) {
-        if (profileService.checkIfUserExists(username) || username.isEmpty() || password.isEmpty() || confPassword.isEmpty()){
+        if (profileService.checkIfUserExists(username) || username.isEmpty() || password.isEmpty() || confPassword.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if (!password.equals(confPassword)){
+        if (!password.equals(confPassword)) {
             throw new IllegalArgumentException();
         }
 
@@ -134,7 +152,7 @@ public class RegistrationFrame extends JFrame {
         frame.setTitle("Enter your data");
         frame.setVisible(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        frame.setLocation(gd.getDisplayMode().getWidth()/2 - 200, gd.getDisplayMode().getHeight()/2 - 100);
+        frame.setLocation(gd.getDisplayMode().getWidth() / 2 - 200, gd.getDisplayMode().getHeight() / 2 - 100);
         frame.requestFocus();
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

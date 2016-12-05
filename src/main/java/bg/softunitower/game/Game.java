@@ -1,29 +1,40 @@
 package bg.softunitower.game;
+
+import bg.softunitower.db.models.Profile;
+import bg.softunitower.db.services.interfaces.ScoreService;
 import bg.softunitower.fortunebonuslevel.Fortune;
-import bg.softunitower.display.RegistrationFrame;
 import bg.softunitower.display.Window;
 import bg.softunitower.graphicHandler.*;
 import bg.softunitower.objects.HighScore;
 import bg.softunitower.objects.Player;
 import bg.softunitower.objects.ProgressBar;
 import bg.softunitower.objects.gift.Gift;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.*;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
+@Component
 public class Game extends Canvas implements Runnable {
+
+    @Autowired
+    private ScoreService scoreService;
 
     public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";
 
-    public static Score currentScore;
-    public static int score = 0;
+    public static Highscores highscore;
+    public static long score = 0;
     public static int coins = 0;
 
     public static boolean isPaused = false;
+
+    public static Profile PROFILE = null;
 
     public static boolean itemOneUnlocked = false;
     public static boolean itemTwoUnlocked = false;
@@ -35,7 +46,6 @@ public class Game extends Canvas implements Runnable {
 
 
     private Menu menu;
-    private HighScore highScore;
     public boolean running = false;
     private Thread thread;
     private Player player;
@@ -46,15 +56,24 @@ public class Game extends Canvas implements Runnable {
     private InputHandler inputHandler;
     private PauseMenu pauseMenu;
     private long timePlayed;
+    private HighScore highScore;
 
     //Bonus level called "Fortune"
     private Fortune fortune;
 
-    public int getScore() {
+    public static void setProfile(Profile profile) {
+        Game.PROFILE = profile;
+    }
+
+    public long getTimePlayed() {
+        return timePlayed;
+    }
+
+    public long getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(long score) {
         Game.score = score;
     }
 
@@ -89,7 +108,7 @@ public class Game extends Canvas implements Runnable {
         this.pauseMenu = new PauseMenu();
         this.fortune = new Fortune();
 
-        currentScore = new Score(score);
+        highscore = new Highscores(score, this.getTimePlayed());
         PlatformHandler.addStartingPlatforms();
         GiftHandler.addRandomGifts();
         this.createPlayer();
@@ -155,7 +174,7 @@ public class Game extends Canvas implements Runnable {
                     timer += 1000;
 //                    System.out.println("FPS " + frames);
                     frames = 0;
-                    if (gameState == STATE.Game){
+                    if (gameState == STATE.Game) {
                         this.timePlayed++;
                     }
                 }
@@ -229,11 +248,11 @@ public class Game extends Canvas implements Runnable {
 
     public void resetGame() {
 
-       // this.fortune.start();
+        // this.fortune.start();
 //        this.fortune.start();
-        currentScore = new Score(score);
-        isPaused = false;
-        Score.tick(currentScore);
+
+        highscore = new Highscores(this.getScore(), this.getTimePlayed());
+        scoreService.createScore(highscore.prepareForDb());
         Game.gameState = Game.STATE.End;
         Player.isDead = false;
         PlatformHandler.clearAllPlatforms();
