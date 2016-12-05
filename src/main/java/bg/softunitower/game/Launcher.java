@@ -14,6 +14,6 @@ public class Launcher implements CommandLineRunner {
     @Override
     public void run(String... strings) throws IOException {
 
-        this.game.start();
+        game.start();
     }
 }

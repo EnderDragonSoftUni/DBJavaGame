@@ -57,6 +57,7 @@ public class Game extends Canvas implements Runnable {
     private PauseMenu pauseMenu;
     private long timePlayed;
     private HighScore highScore;
+    private boolean isWindowInitialized;
 
     //Bonus level called "Fortune"
     private Fortune fortune;
@@ -112,11 +113,17 @@ public class Game extends Canvas implements Runnable {
         PlatformHandler.addStartingPlatforms();
         GiftHandler.addRandomGifts();
         this.createPlayer();
+        this.isWindowInitialized = false;
+        //startGameWindow();
+    }
 
+    private void startGameWindow() {
         menu = new Menu(this, platformHandler);
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
         new Window(WIDTH, HEIGHT, TITLE, this);
+        this.isWindowInitialized = true;
+
     }
 
     public synchronized void start() {
@@ -151,7 +158,9 @@ public class Game extends Canvas implements Runnable {
             long timer = System.currentTimeMillis();
             int frames = 0;
             while (running) {
-
+                if (PROFILE != null && this.isWindowInitialized == false){
+                    this.startGameWindow();
+                }
                 long now = System.nanoTime();
                 delta += (now - lastTime) / ns;
                 lastTime = now;
@@ -201,11 +210,14 @@ public class Game extends Canvas implements Runnable {
                 gameState == STATE.End ||
                 gameState == STATE.Shop ||
                 gameState == STATE.HighScore) {
-            menu.tick();
+            if (isWindowInitialized) menu.tick();
         }
     }
 
     private void render() {
+        if (!isWindowInitialized){
+            return;
+        }
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
             this.createBufferStrategy(3);
