@@ -16,21 +16,25 @@ public class HighScore {
     private String score;
     private Font font;
 
-    public HighScore(int score) {
-        this.score = Integer.toString(score);
+    public HighScore(long score) {
+        this.score = Long.toString(score);
         this.font = new Font("Calibri", Font.BOLD, FONTSIZE);
 
     }
 
-    public void tick(int score) {
-        this.score = Integer.toString(score);
+    public void tick(long score) {
+        this.score = Long.toString(score);
 
     }
 
     public void render(Graphics g) {
         g.setFont(font);
         g.setColor(Color.green);
+<<<<<<< HEAD
         g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), DRAW_STRING_X, DRAW_STRING_Y);
+=======
+        g.drawString(String.format("Level: %d | Highscores: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
+>>>>>>> 1ba6a4a6af2cd3aa287f9634a1de862db222c8b7
     }
 
 }

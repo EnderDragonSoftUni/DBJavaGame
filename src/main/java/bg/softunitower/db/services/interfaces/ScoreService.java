@@ -1,7 +1,9 @@
 package bg.softunitower.db.services.interfaces;
 
-/**
- * Created by vilimir on 20.11.16.
- */
+import bg.softunitower.db.dtos.ScoreDto;
+import org.springframework.stereotype.Repository;
+
 public interface ScoreService {
+
+    void createScore(ScoreDto scoreDto);
 }
