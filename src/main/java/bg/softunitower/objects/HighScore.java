@@ -6,7 +6,13 @@ import java.awt.*;
 
 
 public class HighScore {
+
     public static final int FONTSIZE = 28;
+
+    private static final int DRAW_STRING_X = 125;
+
+    private static final int DRAW_STRING_Y = 30;
+
     private String score;
     private Font font;
 
@@ -24,7 +30,7 @@ public class HighScore {
     public void render(Graphics g) {
         g.setFont(font);
         g.setColor(Color.green);
-        g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
+        g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), DRAW_STRING_X, DRAW_STRING_Y);
     }
 
 }
