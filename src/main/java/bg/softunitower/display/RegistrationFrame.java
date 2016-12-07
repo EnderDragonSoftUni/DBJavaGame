@@ -6,7 +6,6 @@ import bg.softunitower.db.services.interfaces.ProfileService;
 import bg.softunitower.game.Game;
 import bg.softunitower.utils.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -15,11 +14,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
 import java.util.List;
 
 @Component
 public class RegistrationFrame extends JFrame {
+
+    private static final int FONT_SIZE = 20;
+
+    private static final int FRAME_SIZE_WIDTH = 400;
+
+    private static final int  FRAME_SIZE_HEIGHT= 200;
 
     @Autowired
     private ProfileService profileService;
@@ -55,7 +59,7 @@ public class RegistrationFrame extends JFrame {
 
         initFrame(loginFrame);
 
-        Font fnt = new Font("Calibri", Font.BOLD, 20);
+        Font fnt = new Font("Calibri", Font.BOLD, FONT_SIZE);
         nameLabel.setFont(fnt);
         usernameLabel.setFont(fnt);
         passwordLabel.setFont(fnt);
@@ -161,7 +165,7 @@ public class RegistrationFrame extends JFrame {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         frame.setLocation(gd.getDisplayMode().getWidth() / 2 - 200, gd.getDisplayMode().getHeight() / 2 - 100);
         frame.requestFocus();
-        frame.setSize(400, 200);
+        frame.setSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
