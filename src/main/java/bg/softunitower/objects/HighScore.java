@@ -33,7 +33,7 @@ public class HighScore {
 
         g.drawString(String.format("Level: %d | Score: %s", LevelHandler.getCurrentLevel(), score), DRAW_STRING_X, DRAW_STRING_Y);
 
-        g.drawString(String.format("Level: %d | Highscores: %s", LevelHandler.getCurrentLevel(), score), 125, 30);
+        g.drawString(String.format("Level: %d | Highscores: %s", LevelHandler.getCurrentLevel(), score), DRAW_STRING_X, DRAW_STRING_Y);
 
     }
 
