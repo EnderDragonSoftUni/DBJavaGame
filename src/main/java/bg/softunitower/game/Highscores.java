@@ -13,6 +13,7 @@ import java.util.List;
 @Component
 public class Highscores {
 
+    private static final int SIZE = 25;
     @Autowired
     private ScoreService scoreService;
 
@@ -23,7 +24,7 @@ public class Highscores {
     private int textY = highScoreY + 105;
     private Long score;
     private Long timePlayed;
-    private Font scoreFont = new Font(Font.MONOSPACED, Font.BOLD, 25);
+    private Font scoreFont = new Font(Font.MONOSPACED, Font.BOLD, SIZE);
 
     public Highscores() {
     }
