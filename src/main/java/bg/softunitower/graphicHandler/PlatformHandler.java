@@ -2,11 +2,13 @@ package bg.softunitower.graphicHandler;
 
 import bg.softunitower.game.Game;
 import bg.softunitower.objects.Platform;
+import org.springframework.stereotype.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+@org.springframework.stereotype.Component
 public class PlatformHandler {
 
     public static ArrayList<Platform> objects = new ArrayList<>();

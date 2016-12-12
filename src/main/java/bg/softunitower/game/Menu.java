@@ -1,21 +1,32 @@
 package bg.softunitower.game;
 
+import bg.softunitower.db.dtos.UnlockDto;
+import bg.softunitower.db.services.UnlocksServiceImpl;
+import bg.softunitower.db.services.interfaces.UnlockService;
 import bg.softunitower.graphicHandler.Assets;
 import bg.softunitower.graphicHandler.PlatformHandler;
 import bg.softunitower.objects.Player;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.*;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@Component
 public class Menu extends MouseAdapter {
 
     private Game game;
     private PlatformHandler platformHandler;
+    @Autowired
+    private  UnlockService unlockService;
+
 
     public Menu(Game game, PlatformHandler platformHandler) {
         this.platformHandler = platformHandler;
         this.game = game;
+
     }
 
     public void mousePressed(MouseEvent e) {
@@ -64,17 +75,17 @@ public class Menu extends MouseAdapter {
 
         if (Game.gameState == Game.STATE.Game && Game.isPaused) {
             //Continue button
-            if (mouseOver(mx, my, Assets.continueButton.getX(), Assets.continueButton.getY(), 200, 80)){
+            if (mouseOver(mx, my, Assets.continueButton.getX(), Assets.continueButton.getY(), 200, 80)) {
                 Game.isPaused = false;
             }
 
-            if (mouseOver(mx, my, Assets.mainMenuButton.getX(), Assets.mainMenuButton.getY(), 200, 80)){
+            if (mouseOver(mx, my, Assets.mainMenuButton.getX(), Assets.mainMenuButton.getY(), 200, 80)) {
                 Game.isPaused = false;
                 this.game.resetGame();
                 Game.gameState = Game.STATE.Menu;
             }
 
-            if (mouseOver(mx, my, Assets.pauseMenuExit.getX(), Assets.pauseMenuExit.getY(), 200, 80)){
+            if (mouseOver(mx, my, Assets.pauseMenuExit.getX(), Assets.pauseMenuExit.getY(), 200, 80)) {
                 System.exit(1);
             }
         }
@@ -89,6 +100,7 @@ public class Menu extends MouseAdapter {
                 Game.item2Selected = false;
                 Game.item3Selected = false;
                 Player.img = Assets.wizard;
+                this.saveToDb();
                 return;
             }
             if (mouseOver(mx, my, Assets.selectButtonMiddle.getX(), Assets.selectButtonMiddle.getY(), 100, 40) &&
@@ -97,6 +109,7 @@ public class Menu extends MouseAdapter {
                 Game.item2Selected = true;
                 Game.item3Selected = false;
                 Player.img = Assets.nakov;
+                this.saveToDb();
                 return;
             }
             if (mouseOver(mx, my, Assets.selectButtonRight.getX(), Assets.selectButtonRight.getY(), 100, 40) && Game
@@ -105,11 +118,13 @@ public class Menu extends MouseAdapter {
                 Game.item2Selected = false;
                 Game.item3Selected = true;
                 Player.img = Assets.zombie;
+                this.saveToDb();
                 return;
             }
             if (mouseOver(mx, my, Assets.buyItemOneButton.getX(), Assets.buyItemOneButton.getY(), 100, 40)) {
                 if (Game.coins >= 40) {
                     Game.itemOneUnlocked = true;
+                    this.saveToDb();
                     Game.coins -= 40;
                 }
                 return;
@@ -117,6 +132,7 @@ public class Menu extends MouseAdapter {
             if (mouseOver(mx, my, Assets.buyItemTwoButton.getX(), Assets.buyItemTwoButton.getY(), 100, 40)) {
                 if (Game.coins >= 60) {
                     Game.itemTwoUnlocked = true;
+                    this.saveToDb();
                     Game.coins -= 60;
                 }
                 return;
@@ -124,6 +140,7 @@ public class Menu extends MouseAdapter {
             if (mouseOver(mx, my, Assets.buyItemThreeButton.getX(), Assets.buyItemThreeButton.getY(), 100, 40)) {
                 if (Game.coins >= 15) {
                     Game.itemThreeUnlocked = true;
+                    this.saveToDb();
                     Game.coins -= 15;
                 }
                 return;
@@ -135,6 +152,19 @@ public class Menu extends MouseAdapter {
                 Game.gameState = Game.STATE.Menu;
             }
         }
+    }
+
+    private void saveToDb() {
+
+        UnlockDto unlockDto = new UnlockDto();
+        unlockDto.setItemOneSelected(Game.item1Selected);
+        unlockDto.setItemOneUnlocked(Game.itemOneUnlocked);
+        unlockDto.setItemTwoSelected(Game.item2Selected);
+        unlockDto.setItemTwoUnlocked(Game.itemTwoUnlocked);
+        unlockDto.setItemThreeSelected(Game.item3Selected);
+        unlockDto.setItemThreeUnlocked(Game.itemThreeUnlocked);
+        this.unlockService.save(unlockDto);
+
     }
 
     public void mouseReleased(MouseEvent e) {
