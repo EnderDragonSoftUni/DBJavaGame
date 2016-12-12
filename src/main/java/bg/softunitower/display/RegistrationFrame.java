@@ -93,6 +93,7 @@ public class RegistrationFrame extends JFrame {
                     try {
                         if (profile.getUsername().equals(input) && profile.getPassword().equals(PasswordHelper.md5get(pass))) {
                             Game.setProfile(profile);
+                            Game.initializeUnlocks();
                             loginFrame.dispose();
                         }
                     } catch (NoSuchAlgorithmException e1) {

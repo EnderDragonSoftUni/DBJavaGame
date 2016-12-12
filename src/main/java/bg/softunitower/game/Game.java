@@ -36,15 +36,15 @@ public class Game extends Canvas implements Runnable {
 
     public static Profile PROFILE = null;
 
-    public static boolean itemOneUnlocked = false;
-    public static boolean itemTwoUnlocked = false;
-    public static boolean itemThreeUnlocked = false;
+    public static boolean itemOneUnlocked;
+    public static boolean itemTwoUnlocked;
+    public static boolean itemThreeUnlocked;
 
-    public static boolean item1Selected = false;
-    public static boolean item2Selected = false;
-    public static boolean item3Selected = false;
+    public static boolean item1Selected;
+    public static boolean item2Selected;
+    public static boolean item3Selected;
 
-
+    @Autowired
     private Menu menu;
     public boolean running = false;
     private Thread thread;
@@ -117,8 +117,30 @@ public class Game extends Canvas implements Runnable {
         //startGameWindow();
     }
 
+    public static void initializeUnlocks() {
+        itemOneUnlocked = PROFILE.getUnlocks().getItemOneUnlocked();
+        itemTwoUnlocked = PROFILE.getUnlocks().getItemTwoUnlocked();
+        itemThreeUnlocked = PROFILE.getUnlocks().getItemThreeUnlocked();
+
+        item1Selected = PROFILE.getUnlocks().getItemOneSelected();
+        item2Selected = PROFILE.getUnlocks().getItemTwoSelected();
+        item3Selected = PROFILE.getUnlocks().getItemThreeSelected();
+        setImage();
+
+    }
+
+    private static void setImage() {
+        if (item1Selected){
+            Player.img = Assets.wizard;
+        }else if (item2Selected){
+            Player.img = Assets.nakov;
+        }else if (item3Selected){
+            Player.img = Assets.zombie;
+        }
+    }
+
     private void startGameWindow() {
-        menu = new Menu(this, platformHandler);
+        //menu //= new Menu(this, platformHandler);
         this.addMouseListener(menu);
         this.inputHandler = new InputHandler(this);
         new Window(WIDTH, HEIGHT, TITLE, this);
@@ -158,7 +180,7 @@ public class Game extends Canvas implements Runnable {
             long timer = System.currentTimeMillis();
             int frames = 0;
             while (running) {
-                if (PROFILE != null && this.isWindowInitialized == false){
+                if (PROFILE != null && this.isWindowInitialized == false) {
                     this.startGameWindow();
                 }
                 long now = System.nanoTime();
@@ -215,7 +237,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void render() {
-        if (!isWindowInitialized){
+        if (!isWindowInitialized) {
             return;
         }
         BufferStrategy bs = this.getBufferStrategy();
