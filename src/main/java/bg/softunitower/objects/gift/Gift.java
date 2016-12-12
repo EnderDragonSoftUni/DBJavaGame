@@ -15,6 +15,8 @@ import java.awt.*;
 
 public abstract class Gift {
 
+    private static final int RENDER_SIZE = 32;
+
     private int x;
     private int y;
     private int width;
@@ -58,6 +60,6 @@ public abstract class Gift {
         Color myColour = new Color(0, 0, 0, 0);
         g.setColor(myColour);
         g.fillRect(x,y,this.width,this.height);
-        g.drawImage(  this.img.crop( 32* (int)frame, 0, 32, 32), this.x , this.y ,  32, 32  ,null);
+        g.drawImage(  this.img.crop( RENDER_SIZE* (int)frame, 0, RENDER_SIZE, RENDER_SIZE), this.x , this.y ,  RENDER_SIZE, RENDER_SIZE  ,null);
     }
 }
