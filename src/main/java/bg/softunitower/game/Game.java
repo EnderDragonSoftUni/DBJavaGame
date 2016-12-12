@@ -1,6 +1,9 @@
 package bg.softunitower.game;
 
+import bg.softunitower.db.dtos.ProfileCoinsDto;
+import bg.softunitower.db.dtos.ProfileDto;
 import bg.softunitower.db.models.Profile;
+import bg.softunitower.db.services.interfaces.ProfileService;
 import bg.softunitower.db.services.interfaces.ScoreService;
 import bg.softunitower.fortunebonuslevel.Fortune;
 import bg.softunitower.display.Window;
@@ -22,15 +25,19 @@ public class Game extends Canvas implements Runnable {
 
     @Autowired
     private ScoreService scoreService;
+    @Autowired
+    private  ProfileService profileService;
 
     public static final int SCALE = 2;
     public static final int WIDTH = 320 * SCALE;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Icy Tower+";
 
+
     public static Highscores highscore;
     public static long score = 0;
-    public static int coins = 0;
+    public static int coins;
+    public static boolean coinTransactionFlag = false;
 
     public static boolean isPaused = false;
 
@@ -64,6 +71,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void setProfile(Profile profile) {
         Game.PROFILE = profile;
+        coins = profile.getMoney();
     }
 
     public long getTimePlayed() {
@@ -227,6 +235,10 @@ public class Game extends Canvas implements Runnable {
                 if (Player.isDead) {
                     this.resetGame();
                 }
+                if (coinTransactionFlag){
+                    saveCoins();
+                    coinTransactionFlag = false;
+                }
             }
         } else if (gameState == Game.STATE.Menu ||
                 gameState == STATE.End ||
@@ -287,6 +299,7 @@ public class Game extends Canvas implements Runnable {
 
         highscore = new Highscores(this.getScore(), this.getTimePlayed());
         scoreService.createScore(highscore.prepareForDb());
+        saveCoins();
         Game.gameState = Game.STATE.End;
         Player.isDead = false;
         PlatformHandler.clearAllPlatforms();
@@ -297,6 +310,13 @@ public class Game extends Canvas implements Runnable {
         LevelHandler.setCurrentLevel(1);
         InputHandler.beginning = true;
         LevelHandler.levelPassed();
+
+    }
+
+    public void saveCoins() {
+        ProfileCoinsDto profileCoinsDto = new ProfileCoinsDto();
+        profileCoinsDto.setCoins(coins);
+        this.profileService.saveCoins(profileCoinsDto);
     }
 
     public void createPlayer() {
@@ -315,5 +335,9 @@ public class Game extends Canvas implements Runnable {
             default:
                 return 0;
         }
+    }
+
+    public static void raiseCoinTransactionFlag(){
+        coinTransactionFlag = true;
     }
 }

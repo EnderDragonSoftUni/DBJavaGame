@@ -126,6 +126,7 @@ public class Menu extends MouseAdapter {
                     Game.itemOneUnlocked = true;
                     this.saveToDb();
                     Game.coins -= 40;
+                    Game.raiseCoinTransactionFlag();
                 }
                 return;
             }
@@ -134,6 +135,7 @@ public class Menu extends MouseAdapter {
                     Game.itemTwoUnlocked = true;
                     this.saveToDb();
                     Game.coins -= 60;
+                    Game.raiseCoinTransactionFlag();
                 }
                 return;
             }
@@ -142,6 +144,7 @@ public class Menu extends MouseAdapter {
                     Game.itemThreeUnlocked = true;
                     this.saveToDb();
                     Game.coins -= 15;
+                    Game.raiseCoinTransactionFlag();
                 }
                 return;
             }

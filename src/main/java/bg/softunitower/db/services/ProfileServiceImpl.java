@@ -1,10 +1,12 @@
 package bg.softunitower.db.services;
 
 import bg.softunitower.db.dao.ProfileDao;
+import bg.softunitower.db.dtos.ProfileCoinsDto;
 import bg.softunitower.db.dtos.ProfileDto;
 import bg.softunitower.db.models.Profile;
 import bg.softunitower.db.models.Unlocks;
 import bg.softunitower.db.services.interfaces.ProfileService;
+import bg.softunitower.game.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,12 @@ public class ProfileServiceImpl implements ProfileService {
         profileToSave.setMoney(0);
         profileToSave.setUnlocks(unlocks);
         profileDao.saveAndFlush(profileToSave);
+    }
+    @Override
+    public void saveCoins(ProfileCoinsDto profileCoinsDto){
+        Profile profile = Game.PROFILE;
+        profile.setMoney(profileCoinsDto.getCoins());
+        this.profileDao.saveAndFlush(profile);
     }
 
     @Override
